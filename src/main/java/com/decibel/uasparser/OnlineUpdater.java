@@ -1,4 +1,4 @@
-package cz.mallat.uasparser;
+package com.decibel.uasparser;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import cz.mallat.uasparser.fileparser.PHPFileParser;
-import cz.mallat.uasparser.fileparser.Section;
+import com.decibel.uasparser.fileparser.PHPFileParser;
+import com.decibel.uasparser.fileparser.Section;
 
 /**
  * An updater which runs in a separate background thread and will update once per day.
@@ -34,8 +34,8 @@ public class OnlineUpdater extends Thread {
     public static final String CACHE_FILENAME = "user_agent_strings.txt";
     public static final String PROPERTIES_FILENAME = "user_agent_strings-version.txt";
 
-    protected static final String DATA_RETRIVE_URL = "http://user-agent-string.info/rpc/get_data.php?key=free&format=ini";
-    protected static final String VERSION_CHECK_URL = "http://user-agent-string.info/rpc/get_data.php?key=free&format=ini&ver=y";
+    protected String dataRetriveUrl;
+    protected String versionCheckUrl;
 
     protected final long updateInterval;
     protected int currentVersion;
@@ -49,20 +49,22 @@ public class OnlineUpdater extends Thread {
      * Create a new updater with the default interval of 1 day
      *
      * @param parser        Parser instance to update
+     * @param key			License key for udger.com
      */
-    public OnlineUpdater(UASparser parser) {
-        this(parser, null, 1, TimeUnit.DAYS);
+    public OnlineUpdater(UASparser parser, String key) {
+        this(parser, key, null, 1, TimeUnit.DAYS);
     }
 
     /**
      * Create a new updater
      *
      * @param parser        Parser instance to update
+	 * @param key			License key for udger.com
      * @param cacheDir      directory where file should be cached. If null, uses system temp dir
      * @param interval      number of intervals for the given units
      * @param units         unit type
      */
-    public OnlineUpdater(UASparser parser, String cacheDir, long interval, TimeUnit units) {
+    public OnlineUpdater(UASparser parser, String key, String cacheDir, long interval, TimeUnit units) {
         this.parser = parser;
 
         if (cacheDir == null) {
@@ -74,6 +76,8 @@ public class OnlineUpdater extends Thread {
         this.cacheFile = new File(cacheDir, CACHE_FILENAME);
         this.propsFile = new File(cacheDir, PROPERTIES_FILENAME);
         this.currentVersion = 0;
+		this.dataRetriveUrl = "http://data.udger.com/"+key+"/udgerdata_old.ini";
+		this.versionCheckUrl = "http://data.udger.com/"+key+"/version";
 
         updateInterval = units.toMillis(interval);
 
@@ -168,7 +172,7 @@ public class OnlineUpdater extends Thread {
             BufferedReader reader = null;
             FileWriter writer = null;
             try {
-                URL url = new URL(DATA_RETRIVE_URL);
+                URL url = new URL(dataRetriveUrl);
                 reader = new BufferedReader(new InputStreamReader(url.openStream()));
                 writer = new FileWriter(tmpFile);
                 String line = null;
@@ -251,7 +255,7 @@ public class OnlineUpdater extends Thread {
      * @throws {@link NumberFormatException}
      */
     protected int getVersionFromServer() throws IOException {
-        URL url = new URL(VERSION_CHECK_URL);
+        URL url = new URL(versionCheckUrl);
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new InputStreamReader(url.openStream()));

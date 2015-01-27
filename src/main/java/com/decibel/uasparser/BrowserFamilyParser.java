@@ -1,4 +1,4 @@
-package cz.mallat.uasparser;
+package com.decibel.uasparser;
 
 import java.io.IOException;
 import java.io.InputStream;

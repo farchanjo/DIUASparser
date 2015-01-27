@@ -4,17 +4,17 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>cz.mallat.uasparser</groupId>
-  <artifactId>uasparser</artifactId>
+  <groupId>com.decibelinsight.diuasparser</groupId>
+  <artifactId>decibelinsight-uasparser</artifactId>
 
-  <version>0.6.1</version>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>UASparser</name>
+  <name>DIUASparser</name>
   <description>
-    User Agent parser library for use with the database provided by http://user-agent-string.info/
+    User Agent parser library for use with the database provided by http://udger.com/
   </description>
-  <url>https://github.com/chetan/UASparser</url>
+  <url>https://github.com/adhar1985/DIUASparser</url>
 
   <licenses>
     <license>
@@ -23,26 +23,6 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-
-  <scm>
-    <url>git@github.com:chetan/UASparser.git</url>
-    <connection>scm:git:git@github.com:chetan/UASparser.git</connection>
-    <developerConnection>scm:git:git@github.com:chetan/UASparser.git</developerConnection>
-    <tag>HEAD</tag>
-  </scm>
-
-  <distributionManagement>
-    <snapshotRepository>
-      <id>sonatype-nexus-snapshots</id>
-      <name>Sonatype Nexus snapshot repository</name>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-    <repository>
-      <id>sonatype-nexus-staging</id>
-      <name>Sonatype Nexus release repository</name>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-    </repository>
-  </distributionManagement>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -54,6 +34,12 @@
       <name>Chetan Sarva</name>
       <email>csarva@pixelcop.net</email>
       <url>http://chetanislazy.com/blog/</url>
+    </developer>
+    <developer>
+      <id>adhar1985</id>
+      <name>Mohammad Ariful Haque</name>
+      <email>m.haque:adharconnect.co.uk</email>
+      <url>http://www.adhar.info/</url>
     </developer>
     <developer>
       <id>oli</id>
@@ -157,19 +143,6 @@
         </configuration>
       </plugin>
 
-      <!-- Only run the parent TestSuite -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.16</version>
-        <configuration>
-          <skipTests>${skipTests}</skipTests>
-          <includes>
-            <include>TestSuite.java</include>
-          </includes>
-        </configuration>
-      </plugin>
-
     </plugins>
   </build>
 
@@ -212,18 +185,6 @@
       <artifactId>jregex</artifactId>
       <version>1.2_01</version>
       <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.6</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-        <groupId>commons-lang</groupId>
-        <artifactId>commons-lang</artifactId>
-        <version>2.5</version>
-        <scope>test</scope>
     </dependency>
   </dependencies>
 </project>
