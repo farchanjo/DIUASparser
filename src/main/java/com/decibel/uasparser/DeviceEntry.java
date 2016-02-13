@@ -9,7 +9,7 @@ import java.util.List;
  * @author Felix Siegrist, Inventage AG
  *
  */
-class DeviceEntry {
+public class DeviceEntry {
 
 	private String type;
 	private String ico;

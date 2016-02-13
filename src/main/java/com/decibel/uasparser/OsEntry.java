@@ -9,7 +9,7 @@ import java.util.List;
  * @author oli
  *
  */
-class OsEntry {
+public class OsEntry {
 
 	private String family;
 	private String name;

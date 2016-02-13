@@ -361,7 +361,23 @@ public class UserAgentInfo {
     	this.deviceEntry = deviceEntry;
     }
 
-    @Override
+	public RobotEntry getRobotEntry() {
+		return robotEntry;
+	}
+
+	public BrowserEntry getBrowserEntry() {
+		return browserEntry;
+	}
+
+	public OsEntry getOsEntry() {
+		return osEntry;
+	}
+
+	public DeviceEntry getDeviceEntry() {
+		return deviceEntry;
+	}
+
+	@Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 

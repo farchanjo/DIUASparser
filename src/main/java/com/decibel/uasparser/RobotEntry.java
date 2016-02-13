@@ -9,7 +9,7 @@ import java.util.List;
  * @author oli
  *
  */
-class RobotEntry {
+public class RobotEntry {
 
 	private String userAgentString;
 	private String family;

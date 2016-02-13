@@ -9,7 +9,7 @@ import java.util.List;
  * @author oli
  *
  */
-class BrowserEntry {
+public class BrowserEntry {
 
 	private Long type;
 	private String family;
